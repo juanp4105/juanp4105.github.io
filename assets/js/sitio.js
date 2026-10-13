@@ -42,4 +42,25 @@
       });
     });
   }
+
+  // Contador de visitas (una visita por sesión del navegador; se muestra con una base inicial de 250)
+  var contador = document.querySelector('.contador');
+  if (contador && window.fetch) {
+    var BASE_INICIAL = 250;
+    var api = 'https://abacus.jasoncameron.dev/';
+    var clave = 'juanp4105-github-io/visitas';
+    var contada = false;
+    try { contada = sessionStorage.getItem('visita-contada') === '1'; } catch (e) {}
+    fetch(api + (contada ? 'get/' : 'hit/') + clave)
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (d) {
+        if (typeof d.value !== 'number') return;
+        try { sessionStorage.setItem('visita-contada', '1'); } catch (e) {}
+        var num = contador.querySelector('.contador__num');
+        var idioma = num.getAttribute('data-lang') || 'es';
+        num.textContent = (d.value + BASE_INICIAL).toLocaleString(idioma);
+        contador.hidden = false;
+      })
+      .catch(function () {});
+  }
 })();

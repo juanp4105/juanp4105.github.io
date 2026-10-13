@@ -469,3 +469,13 @@ a:hover { color: var(--tinta); }
 }
 
 .cabeza-pagina__sub { font-size: clamp(1.1rem, 2vw, 1.3rem); font-weight: 600; color: var(--azul); margin: 0 0 1rem; }
+
+/* Portada: título de la franja de cursos en una sola línea */
+.banda h2 { max-width: none; }
+@media (min-width: 640px) { .banda h2 { white-space: nowrap; } }
+
+/* Pie: nota de fuente y contador de visitas */
+.pie__base { max-width: var(--ancho); margin: 2rem auto 0; padding: 1.25rem var(--margen) 0; border-top: 1px solid rgba(230, 237, 246, 0.15); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 2rem; }
+.pie__base .pie__nota { margin: 0; padding: 0; border-top: 0; max-width: none; }
+.contador { margin: 0; font-size: 0.82rem; color: var(--banda-tenue); }
+.contador__num { color: #FFFFFF; font-weight: 600; font-variant-numeric: tabular-nums; }

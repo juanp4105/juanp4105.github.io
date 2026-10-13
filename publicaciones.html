@@ -67,8 +67,8 @@
 <section class="bloque">
   <div class="filtros" role="group" aria-label="Mostrar" hidden>
     <span class="filtros__etiqueta">Mostrar</span>
-    <button type="button" data-filtro="todas" aria-pressed="true">Todas <span class="cuenta">24</span></button>
-    <button type="button" data-filtro="indexado" aria-pressed="false">Artículos en Scopus y Web of Science <span class="cuenta">14</span></button>
+    <button type="button" data-filtro="todas" aria-pressed="true">Todas <span class="cuenta">25</span></button>
+    <button type="button" data-filtro="indexado" aria-pressed="false">Artículos en Scopus y Web of Science <span class="cuenta">15</span></button>
     <button type="button" data-filtro="regional" aria-pressed="false">Artículos en revistas regionales <span class="cuenta">4</span></button>
     <button type="button" data-filtro="capitulo" aria-pressed="false">Capítulos de libro <span class="cuenta">1</span></button>
     <button type="button" data-filtro="congreso" aria-pressed="false">Actas de congreso <span class="cuenta">4</span></button>
@@ -76,6 +76,13 @@
   </div>
 
   <div class="anios">
+    <section class="anio" data-anio="2026">
+      <h2 class="anio__num">2026</h2>
+      <ol class="refs">
+    <li class="ref" data-tipo="indexado">
+      <p class="ref__texto">Barrazueta, P., Arrobo, J. P., & Suing, A. (2026). Narraciones audiovisuales en América Latina ante a la inseguridad: Bogotá, Guayaquil y San Salvador en plataformas digitales. <em>Street Art &amp; Urban Creativity, 12</em>(4), 61–74. <a class="ref__doi" href="https://doi.org/10.62161/sauc.v12.6211" target="_blank" rel="noopener">https://doi.org/10.62161/sauc.v12.6211</a></p>
+    </li>      </ol>
+    </section>
     <section class="anio" data-anio="2025">
       <h2 class="anio__num">2025</h2>
       <ol class="refs">
@@ -204,7 +211,10 @@
       <li><a href="https://investigacion.utpl.edu.ec/jparrobo1" rel="me noopener" target="_blank">Portal de investigación UTPL</a></li>
     </ul>
   </div>
-  <p class="pie__nota">Fuente: redes académicas de Juan Pablo Arrobo-Agila.</p>
+  <div class="pie__base">
+    <p class="pie__nota">Fuente: redes académicas de Juan Pablo Arrobo-Agila.</p>
+    <p class="contador" hidden>Visitas: <span class="contador__num" data-lang="es"></span></p>
+  </div>
 </footer>
 <script src="assets/js/sitio.js" defer></script>
 </body>

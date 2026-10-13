@@ -102,6 +102,7 @@ T = {
     "saltar": {"es": "Saltar al contenido", "en": "Skip to content", "pt": "Pular para o conteúdo"},
     "menu": {"es": "Menú", "en": "Menu", "pt": "Menu"},
     "idioma": {"es": "Idioma", "en": "Language", "pt": "Idioma"},
+    "visitas": {"es": "Visitas", "en": "Visits", "pt": "Visitas"},
     "pie": {
         "es": "Fuente: redes académicas de Juan Pablo Arrobo-Agila.",
         "en": "Source: academic networks of Juan Pablo Arrobo-Agila.",
@@ -269,6 +270,9 @@ INNOVACION = [
 # tipo: indexado | capitulo | congreso | regional | divulgacion
 # linea: id de LINEAS (para relacionar en la página de investigación)
 PUBLICACIONES = [
+    {"anio": 2026, "tipo": "indexado", "linea": "narrativas",
+     "ref": "Barrazueta, P., Arrobo, J. P., & Suing, A. (2026). Narraciones audiovisuales en América Latina ante a la inseguridad: Bogotá, Guayaquil y San Salvador en plataformas digitales. <em>Street Art &amp; Urban Creativity, 12</em>(4), 61–74.",
+     "doi": "10.62161/sauc.v12.6211"},
     {"anio": 2025, "tipo": "indexado", "linea": "narrativas",
      "ref": "Arrobo-Agila, J. P., Suing Ortiz, A., & Barrazueta, P. (2025). Narraciones audiovisuales en América Latina ante la inseguridad: Bogotá, Guayaquil y San Salvador en plataformas digitales. <em>Street Art &amp; Urban Creativity, 11</em>(8), 51–64.",
      "doi": "10.62161/sauc.v11.6082"},

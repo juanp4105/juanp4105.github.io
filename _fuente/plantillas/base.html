@@ -70,7 +70,10 @@
     {% endfor %}
     </ul>
   </div>
-  <p class="pie__nota">{{ t(C.T.pie) }}</p>
+  <div class="pie__base">
+    <p class="pie__nota">{{ t(C.T.pie) }}</p>
+    <p class="contador" hidden>{{ t(C.T.visitas) }}: <span class="contador__num" data-lang="{{ lang }}"></span></p>
+  </div>
 </footer>
 <script src="{{ raiz }}assets/js/sitio.js" defer></script>
 </body>
