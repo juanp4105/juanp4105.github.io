@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block titulo %}{{ t(P.cap_titulo) }} | {{ C.SITIO.nombre }}{% endblock %}
+{% block contenido %}
+<header class="cabeza-pagina">
+  <h1>{{ t(P.cap_titulo) }}</h1>
+  <p class="entrada">{{ t(C.TC.intro) }}</p>
+  <nav class="indice" aria-label="{{ t(P.cap_titulo) }}">
+    <ol>
+    {% for c in C.CURSOS %}
+      <li><a href="#{{ c.id }}">{{ t(c.titulo) }}</a></li>
+    {% endfor %}
+    </ol>
+  </nav>
+</header>
+
+{% for c in C.CURSOS %}
+<article class="curso" id="{{ c.id }}" aria-labelledby="{{ c.id }}-t">
+  <header class="curso__cabeza">
+    <p class="curso__formato">{{ t(c.formato) }}</p>
+    <h2 id="{{ c.id }}-t">{{ t(c.titulo) }}</h2>
+  </header>
+  <dl class="curso__datos">
+    <div><dt>{{ t(C.TC.publico) }}</dt><dd>{{ t(c.publico) }}</dd></div>
+    <div><dt>{{ t(C.TC.duracion) }}</dt><dd>{{ t(c.duracion) }}</dd></div>
+    <div><dt>{{ t(C.TC.modalidad) }}</dt><dd>{{ t(c.modalidad) }}</dd></div>
+  </dl>
+  <h3 class="curso__subt">{{ t(C.TC.contenidos) }}</h3>
+  <ul class="vinetas vinetas--dos">
+  {% for x in t(c.contenidos) %}<li>{{ x }}</li>{% endfor %}
+  </ul>
+  <p class="acciones">
+    <a class="boton boton--sec" href="mailto:{{ C.SITIO.email }}?subject={{ (t(C.TC.asunto) ~ ': ' ~ t(c.titulo))|urlencode }}">{{ t(C.TC.solicitar) }}</a>
+  </p>
+</article>
+{% endfor %}
+
+<section class="bloque dos-col" aria-labelledby="aval-t">
+  <h2 id="aval-t">{{ t(C.TC.aval_titulo) }}</h2>
+  <div>
+    <ul class="lista-fechada">
+    {% set m = C.FORMACION[0] %}
+      <li><span class="fecha">{{ m.anio }}</span><span>{{ t(m.grado)|safe }}<br><span class="tenue">{{ m.inst }}</span></span></li>
+    {% for x in C.CERTIFICACIONES_IA %}
+      <li><span class="fecha">{{ x.anio }}</span><span>{{ t(x.titulo) }}<br><span class="tenue">{{ x.inst }}</span></span></li>
+    {% endfor %}
+    </ul>
+    <h3 class="titulo-menor subtitulo">{{ t(C.TC.innov_titulo) }}</h3>
+    <ul class="lista-fechada">
+    {% for anio, titulo in C.INNOVACION[:2] %}
+      <li><span class="fecha">{{ anio }}</span><span>{{ titulo }}</span></li>
+    {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="banda banda--corta">
+  <div class="banda__dentro">
+    <p>{{ t(C.TC.a_medida) }}</p>
+    <p class="acciones"><a class="boton boton--claro" href="mailto:{{ C.SITIO.email }}">{{ C.SITIO.email }}</a></p>
+  </div>
+</section>
+{% endblock %}

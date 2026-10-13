@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block titulo %}{{ C.SITIO.nombre }}, Ph.D. | {{ t(C.T.rol) }}{% endblock %}
+{% block contenido %}
+<section class="portada">
+  <div class="portada__texto">
+    <h1 class="portada__nombre">Juan Pablo<br>Arrobo Agila</h1>
+    <p class="portada__rol">{{ t(C.T.rol) }}, Ph.D.<br>{{ t(C.T.afiliacion) }}</p>
+    <p class="portada__lema">{{ t(C.T.lema) }}</p>
+    <p class="acciones">
+      <a class="boton" href="publicaciones.html">{{ t(C.T.ver_publicaciones) }}</a>
+      <a class="boton boton--sec" href="mailto:{{ C.SITIO.email }}">{{ t(C.T.escribir) }}</a>
+    </p>
+  </div>
+  <figure class="visor">
+    <picture>
+      <source type="image/webp" srcset="{{ raiz }}assets/img/juan-pablo-arrobo-480.webp 480w, {{ raiz }}assets/img/juan-pablo-arrobo-720.webp 720w" sizes="(min-width: 900px) 420px, 80vw">
+      <img src="{{ raiz }}assets/img/juan-pablo-arrobo-720.jpg" width="720" height="720" alt="{{ t({'es':'Juan Pablo Arrobo Agila en el campus de la UTPL, Loja','en':'Juan Pablo Arrobo Agila on the UTPL campus, Loja','pt':'Juan Pablo Arrobo Agila no campus da UTPL, Loja'}) }}">
+    </picture>
+    <span class="visor__esquina visor__esquina--1" aria-hidden="true"></span>
+    <span class="visor__esquina visor__esquina--2" aria-hidden="true"></span>
+    <span class="visor__esquina visor__esquina--3" aria-hidden="true"></span>
+    <span class="visor__esquina visor__esquina--4" aria-hidden="true"></span>
+  </figure>
+</section>
+
+<section class="bloque perfil">
+  <div class="perfil__bio">
+    {% for parrafo in t(C.T.bio_corta) %}
+    <p>{{ parrafo|safe }}</p>
+    {% endfor %}
+  </div>
+  <aside class="perfil__lateral">
+    <h2 class="titulo-menor">{{ t(P.formacion_titulo) }}</h2>
+    <ul class="lista-fechada">
+    {% for f in C.FORMACION %}
+      <li><span class="fecha">{{ f.anio }}</span><span>{{ t(f.grado)|safe }}<br><span class="tenue">{{ f.inst }}</span></span></li>
+    {% endfor %}
+    </ul>
+  </aside>
+</section>
+
+<section class="bloque cifras" aria-labelledby="cifras-t">
+  <h2 id="cifras-t" class="titulo-menor">{{ t(C.T.cifras_titulo) }}</h2>
+  <dl class="cifras__lista">
+    <div><dt>{{ t(C.T.c_articulos) }}</dt><dd>25</dd></div>
+    <div><dt>{{ t(C.T.c_libros) }}</dt><dd>13</dd></div>
+    <div><dt>{{ t(C.T.c_proyectos) }}</dt><dd>22</dd></div>
+    <div><dt>{{ t(C.T.c_tesis) }}</dt><dd>30</dd></div>
+  </dl>
+  <p class="nota">{{ t(C.T.cifras_fuente) }}</p>
+</section>
+
+<section class="bloque">
+  <div class="encabezado-seccion">
+    <h2>{{ t(C.T.inicio_lineas) }}</h2>
+    <a class="enlace-seccion" href="investigacion.html">{{ t(P.investigacion_titulo) }}</a>
+  </div>
+  <ul class="lineas-breve">
+  {% for l in C.LINEAS %}
+    <li><a href="investigacion.html#{{ l.id }}"><h3>{{ t(l.titulo) }}</h3></a><p>{{ t(l.texto) }}</p></li>
+  {% endfor %}
+  </ul>
+</section>
+
+<section class="bloque">
+  <div class="encabezado-seccion">
+    <h2>{{ t(C.T.inicio_recientes) }}</h2>
+    <a class="enlace-seccion" href="publicaciones.html">{{ t(C.T.ver_todo) }}</a>
+  </div>
+  <ol class="refs">
+  {% for p in pubs if p.tipo == 'indexado' and not p.incompleta %}{% if loop.index <= 3 %}
+    {% include "_ref.html" %}
+  {% endif %}{% endfor %}
+  </ol>
+</section>
+
+<section class="banda">
+  <div class="banda__dentro">
+    <h2>{{ t(C.T.inicio_ia_titulo) }}</h2>
+    <p>{{ t(C.T.inicio_ia_texto) }}</p>
+    <ul class="banda__cursos">
+    {% for c in C.CURSOS %}
+      <li><a href="capacitacion-ia.html#{{ c.id }}">{{ t(c.titulo) }}</a></li>
+    {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock %}

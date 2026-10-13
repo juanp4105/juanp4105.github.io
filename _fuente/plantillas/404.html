@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block titulo %}404 | {{ C.SITIO.nombre }}{% endblock %}
+{% block contenido %}
+<header class="cabeza-pagina cabeza-pagina--404">
+  <h1>{{ t(P.no_encontrada) }}</h1>
+  <p class="entrada">{{ t(P.no_encontrada_texto) }}</p>
+  <p class="acciones"><a class="boton" href="/">{{ t(P.volver_inicio) }}</a> <a class="boton boton--sec" href="/en/">English</a> <a class="boton boton--sec" href="/pt/">Português</a></p>
+</header>
+{% endblock %}

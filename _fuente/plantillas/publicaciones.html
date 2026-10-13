@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block titulo %}{{ t(P.pub_titulo) }} | {{ C.SITIO.nombre }}{% endblock %}
+{% block contenido %}
+<header class="cabeza-pagina">
+  <h1>{{ t(P.pub_titulo) }}</h1>
+  <p class="entrada">{{ t(P.pub_intro) }}</p>
+  <p class="perfiles-cortos">
+    {% for pf in C.PERFILES[:3] %}<a href="{{ pf.url }}" target="_blank" rel="noopener">{{ t(pf.nombre) }}</a>{% endfor %}
+  </p>
+</header>
+
+<section class="bloque">
+  <div class="filtros" role="group" aria-label="{{ t(P.filtrar) }}" hidden>
+    <span class="filtros__etiqueta">{{ t(P.filtrar) }}</span>
+    <button type="button" data-filtro="todas" aria-pressed="true">{{ t(P.todas) }} <span class="cuenta">{{ pubs|length }}</span></button>
+    {% for tp in tipos_presentes %}
+    <button type="button" data-filtro="{{ tp }}" aria-pressed="false">{{ t(C.TIPOS_PUB[tp]) }} <span class="cuenta">{{ pubs|selectattr("tipo","equalto",tp)|list|length }}</span></button>
+    {% endfor %}
+  </div>
+
+  <div class="anios">
+  {% for anio, lista in por_anio.items() %}
+    <section class="anio" data-anio="{{ anio }}">
+      <h2 class="anio__num">{{ anio }}</h2>
+      <ol class="refs">
+      {% for p in lista %}
+        {% include "_ref.html" %}
+      {% endfor %}
+      </ol>
+    </section>
+  {% endfor %}
+  </div>
+</section>
+
+<section class="bloque" aria-labelledby="libros-t">
+  <h2 id="libros-t">{{ t(P.libros_titulo) }}</h2>
+  <p class="nota">{{ t(P.libros_nota) }}</p>
+  <ul class="libros">
+  {% for b in C.LIBROS %}
+    <li><span class="fecha">{{ b.anio }}</span><span><em>{{ b.titulo }}</em><br><span class="tenue">{{ t(C.TIPOS_LIBRO[b.tipo]) }}</span></span></li>
+  {% endfor %}
+  </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block titulo %}{{ t(P.investigacion_titulo) }} | {{ C.SITIO.nombre }}{% endblock %}
+{% block contenido %}
+<header class="cabeza-pagina">
+  <h1>{{ t(P.investigacion_titulo) }}</h1>
+  <p class="entrada">{{ t(P.investigacion_intro) }}</p>
+</header>
+
+<section class="bloque" aria-labelledby="lineas-t">
+  <h2 id="lineas-t" class="titulo-menor">{{ t(P.lineas_titulo) }}</h2>
+  {% for l in C.LINEAS %}
+  <article class="linea" id="{{ l.id }}">
+    <div class="linea__cabeza">
+      <h3>{{ t(l.titulo) }}</h3>
+      <p>{{ t(l.texto) }}</p>
+    </div>
+    {% set rel = pubs | selectattr("linea", "equalto", l.id) | list %}
+    <details class="linea__pubs">
+      <summary>{{ t(P.relacionadas) }} ({{ rel|length }})</summary>
+      <ol class="refs refs--compactas">
+      {% for p in rel %}
+        {% include "_ref.html" %}
+      {% endfor %}
+      </ol>
+    </details>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="bloque" aria-labelledby="proy-t">
+  <h2 id="proy-t">{{ t(P.proyectos_titulo) }}</h2>
+  <p class="nota">{{ t(P.proyectos_nota) }}</p>
+  <ul class="proyectos">
+  {% for pr in C.PROYECTOS %}
+    <li class="proyecto">
+      <span class="fecha">{{ pr.anio }}</span>
+      <div>
+        <p class="proyecto__titulo">{{ pr.titulo }}</p>
+        <p class="tenue">{{ t(pr.tipo) }}. <span class="estado estado--{{ pr.estado }}">{{ t(C.ESTADO[pr.estado]) }}</span></p>
+      </div>
+    </li>
+  {% endfor %}
+  </ul>
+</section>
+
+<section class="bloque" aria-labelledby="grupos-t">
+  <h2 id="grupos-t">{{ t(P.grupos_titulo) }}</h2>
+  <ul class="grupos">
+  {% for g in C.GRUPOS %}
+    <li><a href="{{ g.url }}" target="_blank" rel="noopener"><strong>{{ g.sigla }}</strong> {{ t(g.nombre) }}</a></li>
+  {% endfor %}
+  </ul>
+</section>
+{% endblock %}

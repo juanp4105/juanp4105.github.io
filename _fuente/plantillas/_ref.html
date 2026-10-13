@@ -1,0 +1,3 @@
+    <li class="ref" data-tipo="{{ p.tipo }}">
+      <p class="ref__texto">{{ p.ref|safe }}{% if p.doi %} <a class="ref__doi" href="https://doi.org/{{ p.doi }}" target="_blank" rel="noopener">https://doi.org/{{ p.doi }}</a>{% elif p.url %} <a class="ref__doi" href="{{ p.url }}" target="_blank" rel="noopener">{{ t(P.ver_registro) }}</a>{% endif %}</p>
+    </li>

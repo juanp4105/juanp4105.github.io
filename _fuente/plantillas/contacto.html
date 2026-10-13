@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block titulo %}{{ t(P.contacto_titulo) }} | {{ C.SITIO.nombre }}{% endblock %}
+{% block contenido %}
+<header class="cabeza-pagina">
+  <h1>{{ t(P.contacto_titulo) }}</h1>
+  <p class="entrada">{{ t(P.contacto_intro) }}</p>
+</header>
+
+<section class="bloque contacto">
+  <dl class="contacto__datos">
+    <div>
+      <dt>{{ t(P.correo) }}</dt>
+      <dd><a class="contacto__correo" href="mailto:{{ C.SITIO.email }}">{{ C.SITIO.email }}</a></dd>
+    </div>
+    <div>
+      <dt>{{ t(P.ubicacion) }}</dt>
+      <dd>{{ t(P.ubicacion_texto) }}<br><span class="tenue">{{ t(C.T.departamento) }}</span></dd>
+    </div>
+  </dl>
+</section>
+
+<section class="bloque" aria-labelledby="perf-t">
+  <h2 id="perf-t">{{ t(P.perfiles_titulo) }}</h2>
+  <ul class="perfiles">
+  {% for p in C.PERFILES %}
+    <li><a href="{{ p.url }}" target="_blank" rel="me noopener"><span class="perfiles__nombre">{{ t(p.nombre) }}</span><span class="perfiles__id">{{ p.id }}</span></a></li>
+  {% endfor %}
+  </ul>
+</section>
+{% endblock %}

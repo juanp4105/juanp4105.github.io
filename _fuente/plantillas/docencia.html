@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block titulo %}{{ t(P.doc_titulo) }} | {{ C.SITIO.nombre }}{% endblock %}
+{% block contenido %}
+<header class="cabeza-pagina">
+  <h1>{{ t(P.doc_titulo) }}</h1>
+  <p class="entrada">{{ t(P.doc_intro) }}</p>
+</header>
+
+<section class="bloque dos-col" aria-labelledby="asig-t">
+  <h2 id="asig-t">{{ t(P.asignaturas_titulo) }}</h2>
+  <ul class="asignaturas">
+  {% for a in C.ASIGNATURAS %}
+    <li><h3>{{ t(a.nombre) }}</h3><p class="tenue">{{ t(a.nivel) }}</p></li>
+  {% endfor %}
+  </ul>
+</section>
+
+<section class="bloque dos-col" aria-labelledby="tesis-t">
+  <h2 id="tesis-t">{{ t(P.tesis_titulo) }}</h2>
+  <div>
+    <p>{{ t(P.tesis_texto) }}</p>
+    <p><a href="https://dspace.utpl.edu.ec/" target="_blank" rel="noopener">{{ t(P.repositorio) }}</a></p>
+  </div>
+</section>
+
+<section class="bloque dos-col" aria-labelledby="innov-t">
+  <h2 id="innov-t">{{ t(P.innovacion_titulo) }}</h2>
+  <ul class="lista-fechada">
+  {% for anio, titulo in C.INNOVACION %}
+    <li><span class="fecha">{{ anio }}</span><span>{{ titulo }}</span></li>
+  {% endfor %}
+  </ul>
+</section>
+
+<section class="bloque dos-col" aria-labelledby="tray-t">
+  <h2 id="tray-t">{{ t(P.trayectoria_titulo) }}</h2>
+  <ul class="lista-fechada lista-fechada--ancha">
+  {% for x in C.TRAYECTORIA %}
+    <li><span class="fecha">{{ t(x.periodo) }}</span><span>{{ t(x.cargo) }}<br><span class="tenue">{{ x.inst }}</span></span></li>
+  {% endfor %}
+  </ul>
+</section>
+{% endblock %}
