@@ -28,14 +28,14 @@ IDIOMAS = [
 PAGINAS = [
     {"id": "inicio", "archivo": "index.html",
      "nav": {"es": "Inicio", "en": "Home", "pt": "Início"}},
+    {"id": "capacitacion", "archivo": "capacitacion-ia.html",
+     "nav": {"es": "Cursos de IA", "en": "AI courses", "pt": "Cursos de IA"}},
+    {"id": "docencia", "archivo": "docencia.html",
+     "nav": {"es": "Docencia", "en": "Teaching", "pt": "Docência"}},
     {"id": "investigacion", "archivo": "investigacion.html",
      "nav": {"es": "Investigación", "en": "Research", "pt": "Pesquisa"}},
     {"id": "publicaciones", "archivo": "publicaciones.html",
      "nav": {"es": "Publicaciones", "en": "Publications", "pt": "Publicações"}},
-    {"id": "docencia", "archivo": "docencia.html",
-     "nav": {"es": "Docencia", "en": "Teaching", "pt": "Docência"}},
-    {"id": "capacitacion", "archivo": "capacitacion-ia.html",
-     "nav": {"es": "Cursos de IA", "en": "AI courses", "pt": "Cursos de IA"}},
     {"id": "contacto", "archivo": "contacto.html",
      "nav": {"es": "Contacto", "en": "Contact", "pt": "Contato"}},
 ]
