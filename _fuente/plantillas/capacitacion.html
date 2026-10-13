@@ -1,16 +1,22 @@
 {% extends "base.html" %}
 {% block titulo %}{{ t(P.cap_titulo) }} | {{ C.SITIO.nombre }}{% endblock %}
 {% block contenido %}
-<header class="cabeza-pagina">
-  <h1>{{ t(P.cap_titulo) }}</h1>
-  <p class="entrada">{{ t(C.TC.intro) }}</p>
-  <nav class="indice" aria-label="{{ t(P.cap_titulo) }}">
-    <ol>
-    {% for c in C.CURSOS %}
-      <li><a href="#{{ c.id }}">{{ t(c.titulo) }}</a></li>
-    {% endfor %}
-    </ol>
-  </nav>
+<header class="cabeza-pagina cabeza-pagina--ilustrada">
+  <div class="cabeza-pagina__texto">
+    <h1>{{ t(P.cap_titulo) }}</h1>
+    <p class="entrada">{{ t(C.TC.intro) }}</p>
+    <nav class="indice" aria-label="{{ t(P.cap_titulo) }}">
+      <ol>
+      {% for c in C.CURSOS %}
+        <li><a href="#{{ c.id }}">{{ t(c.titulo) }}</a></li>
+      {% endfor %}
+      </ol>
+    </nav>
+  </div>
+  <picture class="cabeza-pagina__ilustracion">
+    <source type="image/webp" srcset="{{ raiz }}assets/img/robot-ia-400.webp 400w, {{ raiz }}assets/img/robot-ia-640.webp 640w" sizes="(min-width: 900px) 300px, 200px">
+    <img src="{{ raiz }}assets/img/robot-ia-640.jpg" width="640" height="960" alt="" loading="eager">
+  </picture>
 </header>
 
 {% for c in C.CURSOS %}
@@ -19,6 +25,16 @@
     <p class="curso__formato">{{ t(c.formato) }}</p>
     <h2 id="{{ c.id }}-t">{{ t(c.titulo) }}</h2>
   </header>
+  {% if c.imagen %}
+  <figure class="curso__afiche">
+    <a href="{{ raiz }}assets/img/{{ c.imagen.archivo }}-1954.jpg" target="_blank" rel="noopener">
+      <picture>
+        <source type="image/webp" srcset="{{ raiz }}assets/img/{{ c.imagen.archivo }}-1000.webp 1000w, {{ raiz }}assets/img/{{ c.imagen.archivo }}-1954.webp 1954w" sizes="(min-width: 1160px) 1080px, 94vw">
+        <img src="{{ raiz }}assets/img/{{ c.imagen.archivo }}-1000.jpg" width="1954" height="805" alt="{{ t(c.imagen.alt) }}" loading="lazy">
+      </picture>
+    </a>
+  </figure>
+  {% endif %}
   <dl class="curso__datos">
     <div><dt>{{ t(C.TC.publico) }}</dt><dd>{{ t(c.publico) }}</dd></div>
     <div><dt>{{ t(C.TC.duracion) }}</dt><dd>{{ t(c.duracion) }}</dd></div>
