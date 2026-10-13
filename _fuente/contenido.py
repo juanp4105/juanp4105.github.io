@@ -102,9 +102,9 @@ T = {
     "menu": {"es": "Menú", "en": "Menu", "pt": "Menu"},
     "idioma": {"es": "Idioma", "en": "Language", "pt": "Idioma"},
     "pie": {
-        "es": "Datos tomados del portal de investigación de la UTPL y de los perfiles académicos del autor. Última actualización:",
-        "en": "Data drawn from the UTPL research portal and the author's academic profiles. Last updated:",
-        "pt": "Dados extraídos do portal de pesquisa da UTPL e dos perfis acadêmicos do autor. Última atualização:",
+        "es": "Fuente: redes académicas de Juan Pablo Arrobo-Agila.",
+        "en": "Source: academic networks of Juan Pablo Arrobo-Agila.",
+        "pt": "Fonte: redes acadêmicas de Juan Pablo Arrobo-Agila.",
     },
     # cifras
     "cifras_titulo": {"es": "Trayectoria en cifras", "en": "Record at a glance", "pt": "Trajetória em números"},
@@ -539,6 +539,16 @@ CURSOS = [
         "enlace": None,
     },
 ]
+
+PESTANAS = {
+    "secciones": {"es": "Secciones de esta página", "en": "Sections on this page", "pt": "Seções desta página"},
+    "perfil": {"es": "Perfil", "en": "Profile", "pt": "Perfil"},
+    "lineas": {"es": "Qué investigo", "en": "What I research", "pt": "O que pesquiso"},
+    "recientes": {"es": "Publicaciones recientes", "en": "Recent publications", "pt": "Publicações recentes"},
+    "ia": {"es": "Capacitación en IA", "en": "AI training", "pt": "Formação em IA"},
+    "otras": {"es": "Capítulos, actas y divulgación", "en": "Chapters, proceedings and outreach", "pt": "Capítulos, anais e divulgação"},
+    "instructor": {"es": "Formación del instructor", "en": "Instructor's credentials", "pt": "Formação do instrutor"},
+}
 
 TC = {  # textos de la página de capacitación
     "intro": {
