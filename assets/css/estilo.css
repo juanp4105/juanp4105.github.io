@@ -327,3 +327,6 @@ main { max-width: var(--ancho); margin: 0 auto; padding: 0 var(--margen); }
 .curso__subt { font-family: var(--sans); font-size: 1rem; font-weight: 600; margin: 0 0 0.9rem; }
 .vinetas--dos { max-width: 62rem; }
 @media (min-width: 860px) { .vinetas--dos { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 3.5rem; } }
+
+.contacto__correo-sec { font-family: var(--serif); font-size: clamp(1.15rem, 2.6vw, 1.45rem); word-break: break-all; }
+.contacto__datos > div:nth-child(3) { grid-column: 1 / -1; }

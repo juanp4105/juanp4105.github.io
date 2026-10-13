@@ -75,7 +75,10 @@ P = {
         "en": "Write to me to propose research collaborations, invite me to review a manuscript or give a talk, or arrange an AI training course for your institution.",
         "pt": "Escreva-me para propor colaborações de pesquisa, convidar-me para avaliar artigos ou dar uma palestra, ou combinar um curso de formação em IA para sua instituição.",
     },
-    "correo": {"es": "Correo institucional", "en": "University email", "pt": "E-mail institucional"},
+    "correo": {"es": "Correo de contacto", "en": "Contact email", "pt": "E-mail de contato"},
+    "correo_uso": {"es": "Capacitaciones en IA, conferencias y colaboraciones.", "en": "AI training, talks and collaborations.", "pt": "Formações em IA, palestras e colaborações."},
+    "correo_inst": {"es": "Correo institucional", "en": "University email", "pt": "E-mail institucional"},
+    "correo_inst_uso": {"es": "Asuntos académicos de la Universidad Técnica Particular de Loja.", "en": "Academic matters at Universidad Técnica Particular de Loja.", "pt": "Assuntos acadêmicos da Universidad Técnica Particular de Loja."},
     "ubicacion": {"es": "Ubicación", "en": "Location", "pt": "Localização"},
     "ubicacion_texto": {
         "es": "Universidad Técnica Particular de Loja, San Cayetano Alto, Loja, Ecuador",

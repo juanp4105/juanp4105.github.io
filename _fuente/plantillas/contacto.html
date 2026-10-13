@@ -10,7 +10,11 @@
   <dl class="contacto__datos">
     <div>
       <dt>{{ t(P.correo) }}</dt>
-      <dd><a class="contacto__correo" href="mailto:{{ C.SITIO.email }}">{{ C.SITIO.email }}</a></dd>
+      <dd><a class="contacto__correo" href="mailto:{{ C.SITIO.email }}">{{ C.SITIO.email }}</a><br><span class="tenue">{{ t(P.correo_uso) }}</span></dd>
+    </div>
+    <div>
+      <dt>{{ t(P.correo_inst) }}</dt>
+      <dd><a class="contacto__correo-sec" href="mailto:{{ C.SITIO.email_inst }}">{{ C.SITIO.email_inst }}</a><br><span class="tenue">{{ t(P.correo_inst_uso) }}</span></dd>
     </div>
     <div>
       <dt>{{ t(P.ubicacion) }}</dt>

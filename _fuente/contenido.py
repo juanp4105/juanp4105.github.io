@@ -14,7 +14,8 @@ SITIO = {
     "url": "https://juanp4105.github.io",
     "nombre": "Juan Pablo Arrobo Agila",
     "nombre_corto": "Juan Pablo Arrobo",
-    "email": "jparrobo1@utpl.edu.ec",
+    "email": "juanp4105@gmail.com",          # principal: contacto y capacitaciones
+    "email_inst": "jparrobo1@utpl.edu.ec",   # secundario: asuntos académicos de la UTPL
     "actualizado": "2026-10-13",
 }
 
