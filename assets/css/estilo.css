@@ -1,18 +1,25 @@
 /* Sitio de Juan Pablo Arrobo Agila
-   Paleta: tinta (azul institucional profundo), papel (blanco frío), ocre (acento del visor). */
+   Paleta institucional: azul marino (tinta), azul UTPL (azul), cielo (fondos de sección)
+   y dorado (acento del visor y de los detalles). */
 
 :root {
-  --papel: #F6F7F5;
+  --papel: #F7F9FC;
   --superficie: #FFFFFF;
-  --tinta: #172A46;
-  --texto: #1E2530;
-  --tenue: #5A6472;
-  --linea: #D7DCE2;
-  --ocre: #C8901A;
-  --ocre-texto: #8A5D00;
-  --banda: #172A46;
-  --banda-texto: #E9EDF3;
-  --foco: #C8901A;
+  --tinta: #0F2E55;
+  --azul: #1D5C9B;
+  --cielo: #E6EEF8;
+  --texto: #1C2633;
+  --tenue: #536173;
+  --linea: #D2DCE8;
+  --ocre: #D49B17;
+  --ocre-texto: #8A5C00;
+  --ocre-suave: #FBF1D8;
+  --banda: #0F2E55;
+  --banda-2: #143A69;
+  --banda-texto: #E6EDF6;
+  --banda-tenue: #A9BCD4;
+  --sobre-ocre: #0F2E55;
+  --foco: #D49B17;
 
   --serif: "Spectral", Georgia, "Times New Roman", serif;
   --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -25,30 +32,40 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --papel: #10192A;
-    --superficie: #16223A;
-    --tinta: #DCE4F0;
-    --texto: #D9DEE6;
-    --tenue: #9AA5B5;
-    --linea: #2A3852;
-    --ocre: #DDA63A;
-    --ocre-texto: #E6B656;
-    --banda: #0B1322;
-    --banda-texto: #E9EDF3;
+    --papel: #0D1727;
+    --superficie: #132238;
+    --tinta: #E1E9F4;
+    --azul: #86B5E8;
+    --cielo: #152942;
+    --texto: #D8DFE8;
+    --tenue: #9AA8BA;
+    --linea: #25385A;
+    --ocre: #E2AE3E;
+    --ocre-texto: #EBBE5C;
+    --ocre-suave: #33290F;
+    --banda: #091424;
+    --banda-2: #0F2038;
+    --banda-texto: #E6EDF6;
+    --banda-tenue: #9DB0C8;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --papel: #10192A;
-  --superficie: #16223A;
-  --tinta: #DCE4F0;
-  --texto: #D9DEE6;
-  --tenue: #9AA5B5;
-  --linea: #2A3852;
-  --ocre: #DDA63A;
-  --ocre-texto: #E6B656;
-  --banda: #0B1322;
-  --banda-texto: #E9EDF3;
+  --papel: #0D1727;
+  --superficie: #132238;
+  --tinta: #E1E9F4;
+  --azul: #86B5E8;
+  --cielo: #152942;
+  --texto: #D8DFE8;
+  --tenue: #9AA8BA;
+  --linea: #25385A;
+  --ocre: #E2AE3E;
+  --ocre-texto: #EBBE5C;
+  --ocre-suave: #33290F;
+  --banda: #091424;
+  --banda-2: #0F2038;
+  --banda-texto: #E6EDF6;
+  --banda-tenue: #9DB0C8;
   color-scheme: dark;
 }
 
@@ -330,3 +347,95 @@ main { max-width: var(--ancho); margin: 0 auto; padding: 0 var(--margen); }
 
 .contacto__correo-sec { font-family: var(--serif); font-size: clamp(1.15rem, 2.6vw, 1.45rem); word-break: break-all; }
 .contacto__datos > div:nth-child(3) { grid-column: 1 / -1; }
+
+
+/* =================== Capa de color institucional =================== */
+html, body { overflow-x: clip; }
+
+/* Cabecera azul marino */
+.cabecera { background: var(--banda); border-bottom: 3px solid var(--ocre); backdrop-filter: none; }
+.marca__nombre { color: #FFFFFF; }
+.marca__rol { color: var(--banda-tenue); }
+.nav__lista a { color: var(--banda-texto); }
+.nav__lista a:hover { border-bottom-color: var(--banda-tenue); color: #FFFFFF; }
+.nav__lista a[aria-current="page"] { color: #FFFFFF; border-bottom-color: var(--ocre); }
+.idiomas { border-color: rgba(230, 237, 246, 0.3); }
+.idiomas li + li a { border-left-color: rgba(230, 237, 246, 0.3); }
+.idiomas a { color: var(--banda-tenue); }
+.idiomas a:hover { color: #FFFFFF; }
+.idiomas a[aria-current="true"] { background: var(--ocre); color: var(--sobre-ocre); }
+.js .menu-boton { color: var(--banda-texto); border-color: rgba(230, 237, 246, 0.35); }
+@media (max-width: 960px) {
+  .nav__lista a { border-bottom-color: rgba(230, 237, 246, 0.15); }
+}
+.cabecera :focus-visible { outline-color: var(--ocre); }
+
+/* Franjas de fondo a todo lo ancho: portada y encabezados de página */
+.portada, .cabeza-pagina { position: relative; }
+.portada::before, .cabeza-pagina::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: calc(50% - 50vw); right: calc(50% - 50vw);
+  background: var(--cielo); z-index: -1;
+}
+.cabeza-pagina { margin-bottom: 0; }
+.cabeza-pagina + .bloque, .cabeza-pagina + .curso { border-top: 0; }
+.cabeza-pagina h1 { color: var(--tinta); }
+.cabeza-pagina h1::after {
+  content: ""; display: block; width: 3.5rem; height: 4px; background: var(--ocre); margin-top: 1rem; border-radius: 2px;
+}
+
+/* Títulos y detalles en azul */
+h3 { color: var(--azul); }
+.titulo-menor { color: var(--azul); }
+a { color: var(--azul); }
+a:hover { color: var(--tinta); }
+.lineas-breve a h3, .linea__cabeza h3 { color: var(--azul); }
+.portada__lema { color: var(--azul); }
+.perfil__bio p:first-child { color: var(--tinta); }
+
+/* Botones */
+.boton { background: var(--azul); border-color: var(--azul); color: #FFFFFF; }
+.boton:hover { background: var(--tinta); border-color: var(--tinta); color: var(--papel); }
+.boton--sec { background: var(--superficie); color: var(--azul); border-color: var(--azul); }
+.boton--sec:hover { background: var(--cielo); color: var(--tinta); border-color: var(--tinta); }
+.boton--claro { background: var(--ocre); border-color: var(--ocre); color: var(--sobre-ocre); }
+.boton--claro:hover { background: #FFFFFF; color: var(--sobre-ocre); }
+
+/* Cifras como fichas */
+.cifras__lista div { background: var(--superficie); border: 1px solid var(--linea); border-top: 4px solid var(--azul); border-left-width: 1px; padding: 1rem 1.1rem 1.1rem; border-radius: 4px; }
+.cifras__lista div:nth-child(2) { border-top-color: var(--ocre); }
+.cifras__lista div:nth-child(3) { border-top-color: var(--tinta); }
+.cifras__lista div:nth-child(4) { border-top-color: var(--ocre); }
+.cifras__lista dd { color: var(--azul); }
+
+/* Líneas de investigación con filete de color */
+.lineas-breve li { border-left: 3px solid var(--azul); padding-left: 1.1rem; }
+.lineas-breve li:nth-child(even) { border-left-color: var(--ocre); }
+.linea__pubs summary { color: var(--azul); }
+
+/* Publicaciones */
+.anio__num { color: var(--azul); }
+.filtros button { color: var(--azul); }
+.filtros button[aria-pressed="true"] { background: var(--azul); border-color: var(--azul); color: #FFFFFF; }
+.estado--curso { background: var(--ocre-suave); padding: 0.05rem 0.45rem; border-radius: 3px; }
+
+/* Cursos */
+.curso__formato { display: inline-block; background: var(--ocre-suave); color: var(--ocre-texto); padding: 0.15rem 0.6rem; border-radius: 3px; }
+.curso__datos { background: var(--cielo); border-color: transparent; border-left: 4px solid var(--azul); }
+.curso__subt { color: var(--azul); }
+.indice li::marker { color: var(--azul); }
+
+/* Banda y pie en azul marino */
+.banda { background: var(--banda-2); border-top: 3px solid var(--ocre); }
+.banda__cursos a:hover { color: var(--ocre); }
+.pie { background: var(--banda); color: var(--banda-tenue); border-top: 0; margin-top: 0; }
+.bloque:last-of-type { padding-bottom: clamp(3rem, 7vw, 5rem); }
+.pie__nombre { color: #FFFFFF; }
+.pie a { color: var(--banda-texto); }
+.pie a:hover { color: var(--ocre); }
+.pie__nota { color: var(--banda-tenue); border-top: 1px solid rgba(230, 237, 246, 0.15); padding-top: 1.25rem; }
+.pie :focus-visible { outline-color: var(--ocre); }
+
+/* Contacto */
+.contacto__correo { color: var(--azul); }
+.perfiles__nombre { color: var(--azul); }
+.portada + .bloque { border-top: 0; }
