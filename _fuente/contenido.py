@@ -20,9 +20,9 @@ SITIO = {
 }
 
 IDIOMAS = [
-    {"code": "es", "label": "ES", "nombre": "Español", "dir": ""},
-    {"code": "en", "label": "EN", "nombre": "English", "dir": "en/"},
-    {"code": "pt", "label": "PT", "nombre": "Português", "dir": "pt/"},
+    {"code": "es", "label": "ES", "bandera": "ec", "nombre": "Español", "dir": ""},
+    {"code": "en", "label": "EN", "bandera": "us", "nombre": "English", "dir": "en/"},
+    {"code": "pt", "label": "PT", "bandera": "br", "nombre": "Português", "dir": "pt/"},
 ]
 
 PAGINAS = [

@@ -124,7 +124,7 @@ h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
 .idiomas a[aria-current="true"] { background: var(--tinta); color: var(--papel); }
 .menu-boton { display: none; }
 
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
   .js .menu-boton {
     display: inline-flex; align-items: center; gap: 0.5rem;
     font: inherit; font-size: 0.95rem; color: var(--tinta);
@@ -365,7 +365,7 @@ html, body { overflow-x: clip; }
 .idiomas a:hover { color: #FFFFFF; }
 .idiomas a[aria-current="true"] { background: var(--ocre); color: var(--sobre-ocre); }
 .js .menu-boton { color: var(--banda-texto); border-color: rgba(230, 237, 246, 0.35); }
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
   .nav__lista a { border-bottom-color: rgba(230, 237, 246, 0.15); }
 }
 .cabecera :focus-visible { outline-color: var(--ocre); }
@@ -439,3 +439,8 @@ a:hover { color: var(--tinta); }
 .contacto__correo { color: var(--azul); }
 .perfiles__nombre { color: var(--azul); }
 .portada + .bloque { border-top: 0; }
+
+/* Banderas del selector de idioma */
+.idiomas a { display: flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.6rem; }
+.bandera { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4); flex: none; }
+.idiomas a[aria-current="true"] .bandera { box-shadow: 0 0 0 1px rgba(15, 46, 85, 0.35); }

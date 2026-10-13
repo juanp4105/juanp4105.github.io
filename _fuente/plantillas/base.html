@@ -46,7 +46,7 @@
       </ul>
       <ul class="idiomas" aria-label="{{ t(C.T.idioma) }}">
       {% for a in alternos %}
-        <li><a href="{{ a.href }}" hreflang="{{ a.code }}" lang="{{ a.code }}" title="{{ a.nombre }}"{% if a.code == lang %} aria-current="true"{% endif %}>{{ a.label }}</a></li>
+        <li><a href="{{ a.href }}" hreflang="{{ a.code }}" lang="{{ a.code }}" title="{{ a.nombre }}"{% if a.code == lang %} aria-current="true"{% endif %}><img class="bandera" src="{{ raiz }}assets/img/banderas/{{ a.bandera }}.svg" width="20" height="14" alt="" aria-hidden="true">{{ a.label }}</a></li>
       {% endfor %}
       </ul>
     </nav>
