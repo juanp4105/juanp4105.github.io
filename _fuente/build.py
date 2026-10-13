@@ -68,7 +68,8 @@ P = {
     "repositorio": {"es": "Abrir el repositorio de la UTPL", "en": "Open the UTPL repository", "pt": "Abrir o repositório da UTPL"},
     "innovacion_titulo": {"es": "Proyectos de innovación docente", "en": "Teaching innovation projects", "pt": "Projetos de inovação docente"},
     "trayectoria_titulo": {"es": "Trayectoria", "en": "Career", "pt": "Trajetória"},
-    "cap_titulo": {"es": "Capacitación en inteligencia artificial", "en": "Training in artificial intelligence", "pt": "Formação em inteligência artificial"},
+    "cap_titulo": {"es": "Aprende haciendo con IA", "en": "Learn by doing with AI", "pt": "Aprenda fazendo com IA"},
+    "cap_subtitulo": {"es": "Cursos y talleres prácticos para docentes", "en": "Hands-on courses and workshops for teachers", "pt": "Cursos e oficinas práticos para professores"},
     "contacto_titulo": {"es": "Contacto", "en": "Contact", "pt": "Contato"},
     "contacto_intro": {
         "es": "Puede escribirme para proponer colaboraciones de investigación, invitarme a evaluar artículos o a dar una conferencia, o coordinar un curso de capacitación en IA para su institución.",

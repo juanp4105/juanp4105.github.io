@@ -35,7 +35,7 @@ PAGINAS = [
     {"id": "docencia", "archivo": "docencia.html",
      "nav": {"es": "Docencia", "en": "Teaching", "pt": "Docência"}},
     {"id": "capacitacion", "archivo": "capacitacion-ia.html",
-     "nav": {"es": "Capacitación en IA", "en": "AI training", "pt": "Formação em IA"}},
+     "nav": {"es": "Cursos de IA", "en": "AI courses", "pt": "Cursos de IA"}},
     {"id": "contacto", "archivo": "contacto.html",
      "nav": {"es": "Contacto", "en": "Contact", "pt": "Contato"}},
 ]
@@ -121,7 +121,7 @@ T = {
     # inicio
     "inicio_lineas": {"es": "Qué investigo", "en": "What I research", "pt": "O que pesquiso"},
     "inicio_recientes": {"es": "Publicaciones recientes", "en": "Recent publications", "pt": "Publicações recentes"},
-    "inicio_ia_titulo": {"es": "Capacitación docente en inteligencia artificial", "en": "Teacher training in artificial intelligence", "pt": "Formação docente em inteligência artificial"},
+    "inicio_ia_titulo": {"es": "Aprende haciendo con IA", "en": "Learn by doing with AI", "pt": "Aprenda fazendo com IA"},
     "inicio_ia_texto": {
         "es": "Talleres y cursos para que docentes de escuela, colegio y universidad usen la IA generativa con criterio pedagógico, creativo y ético.",
         "en": "Workshops and courses that help school and university teachers use generative AI with pedagogical, creative and ethical judgement.",
@@ -566,9 +566,9 @@ PESTANAS = {
 
 TC = {  # textos de la página de capacitación
     "intro": {
-        "es": "Diseño e imparto formación para docentes que quieren usar la inteligencia artificial con criterio: saber qué hace bien, dónde se equivoca y cómo convertirla en un apoyo para enseñar mejor. Cada curso termina en productos concretos que el participante se lleva a su aula.",
-        "en": "I design and teach training for educators who want to use artificial intelligence with judgement: knowing what it does well, where it fails and how to make it support better teaching. Every course ends in concrete outputs that participants take back to their classrooms.",
-        "pt": "Desenho e ministro formações para professores que querem usar a inteligência artificial com critério: saber o que ela faz bem, onde erra e como transformá-la em apoio para ensinar melhor. Cada curso termina em produtos concretos que o participante leva para sua sala de aula.",
+        "es": "Aprenda a usar la inteligencia artificial con criterio pedagógico: qué hace bien, dónde se equivoca y cómo convertirla en una aliada para enseñar mejor. Cada curso combina práctica guiada y reflexión, y termina con materiales que usted lleva directamente a su aula.",
+        "en": "Learn to use artificial intelligence with sound pedagogical judgement: what it does well, where it gets things wrong and how to make it an ally for better teaching. Each course combines guided practice and reflection, and ends with materials you can take straight into your classroom.",
+        "pt": "Aprenda a usar a inteligência artificial com critério pedagógico: o que ela faz bem, onde erra e como transformá-la em aliada para ensinar melhor. Cada curso combina prática guiada e reflexão e termina com materiais que você leva diretamente para sua sala de aula.",
     },
     "publico": {"es": "Dirigido a", "en": "For", "pt": "Público"},
     "duracion": {"es": "Duración", "en": "Length", "pt": "Duração"},

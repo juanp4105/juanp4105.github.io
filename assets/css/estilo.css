@@ -467,3 +467,5 @@ a:hover { color: var(--tinta); }
   .nav__lista a { font-size: 0.92rem; }
   .idiomas a { padding: 0.28rem 0.45rem; gap: 0.3rem; font-size: 0.78rem; }
 }
+
+.cabeza-pagina__sub { font-size: clamp(1.1rem, 2vw, 1.3rem); font-weight: 600; color: var(--azul); margin: 0 0 1rem; }
