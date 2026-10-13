@@ -39,9 +39,9 @@ P = {
     "formacion_titulo": {"es": "Formación", "en": "Education", "pt": "Formação"},
     "pub_titulo": {"es": "Publicaciones", "en": "Publications", "pt": "Publicações"},
     "pub_intro": {
-        "es": "Artículos, capítulos y actas en formato APA 7, con enlace al DOI cuando existe. La lista completa y las citas actualizadas están en Google Scholar, ORCID y Scopus.",
-        "en": "Articles, chapters and proceedings in APA 7 style, with a DOI link where one exists. The full list and up-to-date citations are on Google Scholar, ORCID and Scopus.",
-        "pt": "Artigos, capítulos e anais no formato APA 7, com link para o DOI quando existe. A lista completa e as citações atualizadas estão no Google Scholar, ORCID e Scopus.",
+        "es": "Aquí se reúnen las principales investigaciones de Juan Pablo Arrobo Agila: artículos en revistas indexadas en Scopus y Web of Science, trabajos en revistas latinoamericanas, capítulos de libro, actas de congresos internacionales y obras colectivas. Desde 2015, su producción examina la imagen y su significado, las narrativas audiovisuales y sonoras, la alfabetización mediática y el papel de la inteligencia artificial en la comunicación.",
+        "en": "This page gathers the main research of Juan Pablo Arrobo Agila: articles in journals indexed in Scopus and Web of Science, papers in Latin American journals, book chapters, international conference proceedings and edited volumes. Since 2015, his work has examined the image and its meaning, audiovisual and sound narratives, media literacy and the role of artificial intelligence in communication.",
+        "pt": "Aqui estão reunidas as principais pesquisas de Juan Pablo Arrobo Agila: artigos em periódicos indexados na Scopus e na Web of Science, trabalhos em periódicos latino-americanos, capítulos de livro, anais de congressos internacionais e obras coletivas. Desde 2015, sua produção examina a imagem e seu significado, as narrativas audiovisuais e sonoras, a alfabetização midiática e o papel da inteligência artificial na comunicação.",
     },
     "filtrar": {"es": "Mostrar", "en": "Show", "pt": "Mostrar"},
     "todas": {"es": "Todas", "en": "All", "pt": "Todas"},
