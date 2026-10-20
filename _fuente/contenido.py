@@ -270,6 +270,9 @@ INNOVACION = [
 # tipo: indexado | capitulo | congreso | regional | divulgacion
 # linea: id de LINEAS (para relacionar en la página de investigación)
 PUBLICACIONES = [
+    {"anio": 2026, "tipo": "indexado", "linea": "ia",
+     "ref": "Arrobo-Agila, J. P., Suing, A., Barrazueta, P., & Salcedo-Viteri, K. (2026). Transformación en la comunicación académica y profesional de Ecuador y Perú, mediante la adopción de la IA: Percepciones y sentidos de la IA en la comunicación académica y profesional. <em>VISUAL REVIEW. International Visual Culture Review, 18</em>(5), 211–222.",
+     "doi": "10.62161/revvisual.v18.6404"},
     {"anio": 2026, "tipo": "indexado", "linea": "narrativas",
      "ref": "Barrazueta, P., Arrobo, J. P., & Suing, A. (2026). Narraciones audiovisuales en América Latina ante a la inseguridad: Bogotá, Guayaquil y San Salvador en plataformas digitales. <em>Street Art &amp; Urban Creativity, 12</em>(4), 61–74.",
      "doi": "10.62161/sauc.v12.6211"},
