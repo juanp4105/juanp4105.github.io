@@ -176,6 +176,9 @@ ol.refs li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-
         <label class="f" for="foco">Eje de análisis <small>El aspecto central que estudiarás, en pocas palabras.</small>
           <input type="text" id="foco" data-a="foco" placeholder="Ej.: el sonido como recurso narrativo">
         </label>
+        <label class="f" for="asignatura">Asignatura de origen <small>La asignatura de la carrera con la que más se relaciona tu trabajo.</small>
+          <select id="asignatura" data-a="asignatura"><option value="">Elige una asignatura</option></select>
+        </label>
         <label class="f" for="pieza" id="lblPieza">Pieza que producirás <small>Formato y extensión.</small>
           <input type="text" id="pieza" data-a="pieza" placeholder="Ej.: un pódcast documental de cuatro episodios">
         </label>
@@ -700,6 +703,21 @@ var TIPOS = [
   { id: 'perfil', label: 'Perfil profesional', c: ['perfil'], kw: ['perfil profesional', 'empleab', 'mercado laboral'] }
 ];
 
+/* Asignaturas de la carrera → bloque teórico prioritario */
+var ASIGNATURAS = [
+  { n: 'Narrativa Audiovisual', c: ['lenguaje'] },
+  { n: 'Guionización', c: ['guion'] },
+  { n: 'Fotografía Digital', c: ['fotografia'] },
+  { n: 'Técnicas Sonoras Digitales', c: ['sonido'] },
+  { n: 'Producción Audiovisual', c: ['formacion'] },
+  { n: 'Storytelling', c: ['transmedia'] },
+  { n: 'Gestión de Actores', c: ['guion'] },
+  { n: 'Producción para Plataformas', c: ['redes'] },
+  { n: 'Animación y Efectos', c: ['animacion'] },
+  { n: 'Postproducción Audiovisual', c: ['montaje'] },
+  { n: 'IA Aplicada a la Creación Audiovisual', c: ['ia'] }
+];
+
 /* Redacción por plantillas a partir de las respuestas del estudiante. Requiere Core, CLUSTERS, TIPOS, METODO_REFS y BYK. */
 var Gen = (function () {
   'use strict';
@@ -744,7 +762,7 @@ var Gen = (function () {
       tema: tema || falta('tema'), temaLc: lc(tema) || falta('tema'), foco: lc(foco), focoUc: uc(foco),
       prods: prods, prodsFrase: prods.length ? lista(prods.slice(0, 6).map(lc)) : '',
       pieza: lc(d.pieza) || falta('pieza audiovisual que producirás'),
-      ctx: ctx ? lc(ctx) : '',
+      ctx: ctx ? lc(ctx) : '', asig: clean(d.asignatura),
       problema: strip(d.problema, ['el problema es que', 'el problema que aborda mi trabajo es que', 'que']),
       just: strip(d.justificacion, ['este trabajo es importante porque', 'es importante porque', 'porque']),
       aporte: strip(d.aporte, ['el trabajo aportará', 'aportará', 'aportar'])
@@ -758,6 +776,8 @@ var Gen = (function () {
       var t = TIPOS.filter(function (x) { return x.id === id; })[0];
       if (t) t.c.forEach(function (c) { if (sel.indexOf(c) < 0) sel.push(c); });
     });
+    var asig = (typeof ASIGNATURAS !== 'undefined' ? ASIGNATURAS : []).filter(function (a) { return a.n === d.asignatura; })[0];
+    if (asig) asig.c.forEach(function (c) { if (sel.indexOf(c) < 0) sel.push(c); });
     var hay = ' ' + norm([d.tema, d.foco, d.productos, d.problema, d.contexto, d.pieza].join(' ')) + ' ';
     TIPOS.forEach(function (t) {
       if (t.kw.some(function (k) { return hay.indexOf(k) >= 0; })) t.c.forEach(function (c) { if (sel.indexOf(c) < 0) sel.push(c); });
@@ -815,9 +835,9 @@ var Gen = (function () {
     var prob = x.problema ? 'El problema que lo motiva es que ' + lc(x.problema) + '.' : falta('Problema: explica qué necesidad o vacío aborda tu trabajo.');
     var just = x.just ? 'Su pertinencia radica en que ' + lc(x.just) + '.' : falta('Justificación: explica por qué es importante.');
     var ap = x.aporte ? ' Como resultado, el trabajo aportará ' + lc(x.aporte) + '.' : '';
-    if (d.enfoque === 'produccion') return 'Este trabajo propone la creación de ' + x.pieza + ' sobre ' + x.temaLc + '. ' + prob + ' ' + just + ' El proyecto abarca la preproducción, la producción, la posproducción y la difusión de la pieza' + (x.ctx ? ', dirigida a ' + x.ctx : '') + ', y documenta en una memoria técnica las decisiones narrativas, estéticas y técnicas tomadas desde ' + x.foco + '.' + ap;
-    if (d.enfoque === 'investigacion') return 'Este trabajo analiza ' + x.temaLc + (x.ctx ? ' en ' + x.ctx : '') + '. ' + prob + ' ' + just + ' Con un enfoque cualitativo, el estudio examina ' + x.foco + ' mediante análisis documental y audiovisual y, cuando corresponda, entrevistas a actores del sector, para derivar recomendaciones aplicables a la práctica profesional.' + ap;
-    return 'Este trabajo desarrolla una memoria técnica sobre ' + x.temaLc + '. ' + prob + ' ' + just + ' El caso de estudio es la trayectoria formativa del estudiante en la Tecnología Superior en Creación Audiovisual Digital de la UTPL, representada por ' + (x.prodsFrase || 'los productos audiovisuales elaborados en las asignaturas de la carrera') + '. El alcance comprende el inventario y la selección de evidencias, su análisis narrativo, visual, sonoro y técnico desde ' + x.foco + ', y una matriz que vincula cada producto con asignaturas, resultados de aprendizaje y competencias del perfil de egreso.' + ap;
+    if (d.enfoque === 'produccion') return 'Este trabajo propone la creación de ' + x.pieza + ' sobre ' + x.temaLc + '. ' + prob + ' ' + just + ' El proyecto abarca la preproducción, la producción, la posproducción y la difusión de la pieza' + (x.ctx ? ', dirigida a ' + x.ctx : '') + ', y documenta en una memoria técnica las decisiones narrativas, estéticas y técnicas tomadas desde ' + x.foco + '.' + (x.asig ? ' La propuesta parte de los aprendizajes de la asignatura ' + x.asig + '.' : '') + ap;
+    if (d.enfoque === 'investigacion') return 'Este trabajo analiza ' + x.temaLc + (x.ctx ? ' en ' + x.ctx : '') + '. ' + prob + ' ' + just + ' Con un enfoque cualitativo, el estudio examina ' + x.foco + ' mediante análisis documental y audiovisual y, cuando corresponda, entrevistas a actores del sector, para derivar recomendaciones aplicables a la práctica profesional.' + (x.asig ? ' El estudio profundiza en contenidos de la asignatura ' + x.asig + '.' : '') + ap;
+    return 'Este trabajo desarrolla una memoria técnica sobre ' + x.temaLc + '. ' + prob + ' ' + just + ' El caso de estudio es la trayectoria formativa del estudiante en la Tecnología Superior en Creación Audiovisual Digital de la UTPL, representada por ' + (x.prodsFrase || 'los productos audiovisuales elaborados en las asignaturas de la carrera') + (x.asig ? ', con énfasis en los elaborados en la asignatura ' + x.asig : '') + '. El alcance comprende el inventario y la selección de evidencias, su análisis narrativo, visual, sonoro y técnico desde ' + x.foco + ', y una matriz que vincula cada producto con asignaturas, resultados de aprendizaje y competencias del perfil de egreso.' + ap;
   }
 
   function objetivos(d) {
@@ -880,7 +900,7 @@ var Gen = (function () {
       P.push('El trabajo adopta un enfoque cualitativo de investigación desde la práctica, en el que el propio creador estudia su producción [Ker19;Fre26], y lo organiza como un estudio de caso [Del19]. La propuesta de solución es una memoria técnica que acompaña a un portafolio integrador curado: un conjunto seleccionado de productos que, analizados desde ' + x.foco + ', permiten argumentar la articulación entre la formación recibida y el perfil de egreso [Par22].');
       P.push('Las estrategias de trabajo se ordenan en cuatro fases. En la primera, ' + rec + ', se recuperan, respaldan e inventarían los productos con su ficha técnica, consigna de origen, asignatura, fecha, rol del estudiante y permisos de uso. En la segunda, ' + met + ', se seleccionan las evidencias con criterios de pertinencia, calidad y autoría, y se construye la matriz de integración curricular. En la tercera, ' + ana + ', se analizan las decisiones narrativas, visuales, sonoras, técnicas y tecnológicas de cada pieza. En la cuarta, ' + ela + ', se redacta la memoria; la revisión del tribunal y la defensa se desarrollan ' + tri + ' y ' + dis + '.');
       P.push('Los instrumentos son el inventario de evidencias, las fichas técnicas, la matriz de integración curricular, guías de análisis audiovisual y una bitácora reflexiva del proceso. La validez se sostiene en la triangulación entre las piezas, los documentos de proceso y la retroalimentación del director [Esq25]. En el plano ético, el trabajo respeta la autoría de los colaboradores, verifica los derechos de imagen, música y sonido de cada pieza y declara el uso de herramientas de inteligencia artificial cuando corresponda.');
-      C = ['El caso de estudio es la trayectoria formativa del estudiante en la Tecnología Superior en Creación Audiovisual Digital de la UTPL. La unidad de análisis la constituyen los productos audiovisuales elaborados en las asignaturas de la carrera' + (x.prodsFrase ? ', entre ellos ' + x.prodsFrase : '') + '. Se incluyen las piezas en las que el estudiante tuvo un rol verificable, que conservan sus archivos y documentos de proceso y que se relacionan con ' + x.foco + '. Las fuentes de información son las propias piezas, sus guiones, bitácoras y consignas de origen, las retroalimentaciones recibidas y la reflexión del estudiante.'];
+      C = ['El caso de estudio es la trayectoria formativa del estudiante en la Tecnología Superior en Creación Audiovisual Digital de la UTPL. La unidad de análisis la constituyen los productos audiovisuales elaborados en las asignaturas de la carrera' + (x.asig ? ', en particular en ' + x.asig : '') + (x.prodsFrase ? ', entre ellos ' + x.prodsFrase : '') + '. Se incluyen las piezas en las que el estudiante tuvo un rol verificable, que conservan sus archivos y documentos de proceso y que se relacionan con ' + x.foco + '. Las fuentes de información son las propias piezas, sus guiones, bitácoras y consignas de origen, las retroalimentaciones recibidas y la reflexión del estudiante.'];
     }
     return { metodologia: P.map(function (p) { return cites(p, used); }).join('\n\n'), estudio_caso: C.map(function (p) { return cites(p, used); }).join('\n\n') };
   }
@@ -941,14 +961,14 @@ if (typeof module !== 'undefined') module.exports = Gen;
   var esc = Core.esc, norm = Gen.norm;
   var KEY = 'tic-anteproyecto-abierto-v1';
   var EJEMPLOS = [
-    { tema: 'El sonido como eje narrativo en mis producciones de la carrera', foco: 'el sonido como recurso narrativo', tipos: ['sonido', 'ficcion'] },
-    { tema: 'Evolución de mi lenguaje visual en fotografía y video para redes sociales', foco: 'el lenguaje visual en formatos para redes', tipos: ['fotografia', 'redes'] },
-    { tema: 'La inteligencia artificial generativa en mi flujo de posproducción audiovisual', foco: 'el uso de la inteligencia artificial en la posproducción', tipos: ['ia', 'montaje'] },
-    { tema: 'Documental participativo sobre la identidad cultural lojana', foco: 'la participación comunitaria en el relato documental', tipos: ['documental', 'comunitario', 'ecuador'], enfoque: 'produccion', pieza: 'un documental participativo de 15 minutos' }
+    { tema: 'El sonido como eje narrativo en mis producciones de la carrera', foco: 'el sonido como recurso narrativo', asignatura: 'Técnicas Sonoras Digitales', tipos: ['sonido', 'ficcion'] },
+    { tema: 'Evolución de mi lenguaje visual en fotografía y video para redes sociales', foco: 'el lenguaje visual en formatos para redes', asignatura: 'Fotografía Digital', tipos: ['fotografia', 'redes'] },
+    { tema: 'La inteligencia artificial generativa en mi flujo de posproducción audiovisual', foco: 'el uso de la inteligencia artificial en la posproducción', asignatura: 'IA Aplicada a la Creación Audiovisual', tipos: ['ia', 'montaje'] },
+    { tema: 'Documental participativo sobre la identidad cultural lojana', foco: 'la participación comunitaria en el relato documental', asignatura: 'Producción Audiovisual', tipos: ['documental', 'comunitario', 'ecuador'], enfoque: 'produccion', pieza: 'un documental participativo de 15 minutos' }
   ];
 
   function blank() {
-    return { a: { tema: '', enfoque: 'memoria', foco: '', pieza: '', contexto: '', tipos: [], productos: '', problema: '', justificacion: '', aporte: '' },
+    return { a: { tema: '', enfoque: 'memoria', foco: '', asignatura: '', pieza: '', contexto: '', tipos: [], productos: '', problema: '', justificacion: '', aporte: '' },
       titulo: '', titulos: [], descripcion: '', marco: '', objetivo_general: '', objetivos_especificos: [], metodologia: '', estudio_caso: '', pregunta: '',
       fuentes: [], externas: [], propias: '', cronograma: JSON.parse(JSON.stringify(Core.ACTIVIDADES)), presupuesto: [], presupuesto_nota: '',
       declaracion_ia: true, datos: { fecha: Core.fechaLarga(new Date()), ciudad_oficio: 'Loja' }, generado: false };
@@ -989,6 +1009,7 @@ if (typeof module !== 'undefined') module.exports = Gen;
   $('#prog').innerHTML = SECS.map(function (s) { return '<li><a href="#sec-' + s.id + '"><span class="n">' + s.num + '</span><span>' + s.name + '</span><span class="dot" data-dot="' + s.id + '"></span></a></li>'; }).join('');
   $('#prog').addEventListener('click', function (e) { var a = e.target.closest('a'); if (!a) return; e.preventDefault(); var t = document.getElementById(a.getAttribute('href').slice(1)); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
   $('#ejemplos').innerHTML = EJEMPLOS.map(function (x, i) { return '<button type="button" class="chip" data-ej="' + i + '">Ejemplo ' + (i + 1) + '</button>'; }).join('');
+  $('#asignatura').innerHTML = '<option value="">Elige una asignatura</option>' + ASIGNATURAS.map(function (a) { return '<option value="' + esc(a.n) + '">' + esc(a.n) + '</option>'; }).join('');
   $('#tipos').innerHTML = TIPOS.map(function (t) { return '<button type="button" class="chip" data-tipo="' + t.id + '" aria-pressed="false">' + esc(t.label) + '</button>'; }).join('');
 
   /* render */
@@ -1170,7 +1191,7 @@ if (typeof module !== 'undefined') module.exports = Gen;
   $('#q').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); buscar(); } });
   document.addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
-    if (b.dataset.ej != null) { var x = EJEMPLOS[+b.dataset.ej]; S.a.tema = x.tema; S.a.foco = x.foco; S.a.tipos = x.tipos.slice(); S.a.enfoque = x.enfoque || 'memoria'; S.a.pieza = x.pieza || S.a.pieza; renderAnswers(); renderDbs(); save(); return; }
+    if (b.dataset.ej != null) { var x = EJEMPLOS[+b.dataset.ej]; S.a.tema = x.tema; S.a.foco = x.foco; S.a.asignatura = x.asignatura || ''; S.a.tipos = x.tipos.slice(); S.a.enfoque = x.enfoque || 'memoria'; S.a.pieza = x.pieza || S.a.pieza; renderAnswers(); renderDbs(); save(); return; }
     if (b.dataset.tipo) { var i = S.a.tipos.indexOf(b.dataset.tipo); if (i >= 0) S.a.tipos.splice(i, 1); else S.a.tipos.push(b.dataset.tipo); b.setAttribute('aria-pressed', i < 0); save(); return; }
     if (b.dataset.sug) { S.titulo = b.dataset.sug; save(); renderDoc(); return; }
     if (b.dataset.redo) { rehacer(b.dataset.redo); return; }
