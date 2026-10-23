@@ -46,12 +46,6 @@ header.top{padding-block:24px 22px;display:grid;gap:18px;border-bottom:1px solid
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.4vw,46px);line-height:1.05;margin:6px 0 0;color:var(--tinta);text-wrap:balance}
 h1 em{font-style:italic;color:var(--ocre-texto)}
 .lede{color:var(--tenue);max-width:70ch;margin:10px 0 0}
-.slate{display:grid;gap:6px}
-.slate .row{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:3px}
-.slate .wk{height:28px;border-radius:3px;background:var(--linea2);display:flex;align-items:flex-end;justify-content:center;font-size:10.5px;color:var(--tenue);padding-bottom:3px;font-variant-numeric:tabular-nums;font-weight:600}
-.slate .wk.past{background:var(--linea)}
-.slate .wk.now{background:var(--ocre);color:var(--sobre-ocre)}
-.slate .legend{display:flex;justify-content:space-between;font-size:12px;color:var(--tenue);flex-wrap:wrap;gap:6px}
 .layout{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:28px;align-items:start}
 @media (max-width:980px){.layout{grid-template-columns:minmax(0,1fr)}}
 .rail{display:grid;gap:14px;min-width:0}
@@ -123,8 +117,6 @@ table.crono td.act input{border:0;border-radius:0;background:transparent;padding
 table.crono button.c{width:100%;height:30px;border:0;background:transparent;cursor:pointer;display:block;padding:0}
 table.crono button.c[aria-pressed="true"]{background:var(--relleno)}
 table.crono button.c:hover{outline:2px solid var(--ocre);outline-offset:-2px}
-table.crono th.now{background:var(--ocre);color:var(--sobre-ocre)}
-table.crono th.now small{color:var(--sobre-ocre)}
 /* presupuesto */
 table.pres{width:100%;border-collapse:collapse;font-size:14px}
 table.pres th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--tenue);padding:6px;border-bottom:1px solid var(--linea)}
@@ -166,10 +158,6 @@ ol.refs li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-
       <div class="eyebrow" style="margin-top:12px">TIC · PERI_2050 · Tecnología Superior en Creación Audiovisual Digital · UTPL</div>
       <h1>Asistente de <em>anteproyecto</em></h1>
       <p class="lede">Responde las preguntas del panel, pulsa <b>Redactar anteproyecto</b> y la página escribe cada apartado del formato institucional con fuentes académicas verificadas. Revisa y ajusta el texto, completa tus datos y descarga el documento en Word. No necesitas crear ninguna cuenta.</p>
-    </div>
-    <div class="slate" aria-label="Periodo de 16 semanas">
-      <div class="row" id="slate"></div>
-      <div class="legend"><span id="slateStart"></span><span id="slateNow"></span><span id="slateEnd"></span></div>
     </div>
   </header>
 
@@ -974,12 +962,7 @@ if (typeof module !== 'undefined') module.exports = Gen;
   var toastT; function toast(m) { var t = $('#toast'); t.textContent = m; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(function () { t.hidden = true; }, 2200); }
 
   /* semanas */
-  var W = Core.weeks(), today = new Date(), nowIdx = -1;
-  W.forEach(function (w, i) { if (today >= w.start && today < new Date(w.end.getTime() + 864e5)) nowIdx = i; });
-  $('#slate').innerHTML = W.map(function (w, i) { return '<div class="wk' + (i < nowIdx ? ' past' : '') + (i === nowIdx ? ' now' : '') + '" title="Semana ' + w.n + ': ' + Core.fechaLarga(w.start) + '">S' + w.n + '</div>'; }).join('');
-  $('#slateStart').textContent = 'S1 · ' + Core.fechaLarga(W[0].start);
-  $('#slateNow').textContent = nowIdx >= 0 ? 'Hoy: semana ' + (nowIdx + 1) : '';
-  $('#slateEnd').textContent = 'S16 · ' + Core.fechaLarga(W[15].end);
+  var W = Core.weeks();
 
   /* hoja */
   var SECS = [
@@ -1079,7 +1062,7 @@ if (typeof module !== 'undefined') module.exports = Gen;
   function renderCrono() {
     var G = Core.monthGroups(W);
     var h = '<thead><tr><th class="act" rowspan="2">Actividades</th>' + G.map(function (g) { return '<th colspan="' + g.span + '">' + g.name + '</th>'; }).join('') + '</tr><tr>' +
-      W.map(function (w, i) { return '<th' + (i === nowIdx ? ' class="now"' : '') + '>' + w.n + '<small>' + w.dm + '</small></th>'; }).join('') + '</tr></thead><tbody>';
+      W.map(function (w, i) { return '<th>' + w.n + '<small>' + w.dm + '</small></th>'; }).join('') + '</tr></thead><tbody>';
     S.cronograma.forEach(function (ac, r) {
       h += '<tr><td class="act"><input type="text" aria-label="Actividad ' + (r + 1) + '" data-ca="' + r + '" value="' + esc(ac.a) + '"></td>';
       for (var k = 1; k <= 16; k++) h += '<td><button type="button" class="c" data-cr="' + r + '" data-ck="' + k + '" aria-pressed="' + (ac.w.indexOf(k) >= 0) + '" aria-label="' + esc(ac.a) + ', semana ' + k + '"></button></td>';
