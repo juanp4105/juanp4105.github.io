@@ -1,0 +1,23 @@
+AudioLab Studio · avisos de licencia
+=====================================
+
+Esta página es la compilación en un solo archivo de AudioLab Studio, un editor de audio
+multipista para el navegador desarrollado para la docencia de radio y producción sonora
+en la UTPL. No envía audio a ningún servidor: todo el procesamiento ocurre en el navegador.
+
+Componentes de terceros incluidos en index.html
+------------------------------------------------
+
+React y React DOM 19.2 — Licencia MIT
+  Copyright (c) Meta Platforms, Inc. y afiliados.
+  https://github.com/facebook/react
+
+lamejs 1.2.1 (codificador MP3 LAME portado a JavaScript) — Licencia LGPL-3.0
+  Copyright (c) Alex Zhukov y los autores del proyecto LAME.
+  Código fuente: https://github.com/zhuker/lamejs (commit 582bbba)
+  Se incluye sin modificaciones. Puede sustituirse por otra versión compatible
+  recompilando AudioLab Studio desde su código fuente (src/vendor/lame.js).
+  Texto de la licencia: https://www.gnu.org/licenses/lgpl-3.0.html
+
+Tipografías Barlow, Barlow Semi Condensed y JetBrains Mono — SIL Open Font License 1.1,
+  servidas por Google Fonts.
